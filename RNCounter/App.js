@@ -47,6 +47,7 @@ class HomePage extends React.Component {
           <FAB
             style={styles.fab}
             icon="plus"
+            color="white"
             onPress={() => this.incrementCounter()} />
         </Portal>
       </View>
