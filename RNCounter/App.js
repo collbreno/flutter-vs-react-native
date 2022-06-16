@@ -58,7 +58,7 @@ class HomePage extends React.Component {
 const App = () => {
   return (
     <PaperProvider>
-        <HomePage />
+      <HomePage />
     </PaperProvider>
   );
 };
