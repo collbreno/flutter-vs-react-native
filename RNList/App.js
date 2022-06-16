@@ -7,8 +7,10 @@
  */
 
 import React from 'react';
+import MOCK_DATA from './assets/mock_data.json';
 import {
   FlatList,
+  StatusBar,
   StyleSheet,
   Text,
   View,
@@ -19,24 +21,6 @@ import {
   List,
   Provider as PaperProvider,
 } from 'react-native-paper'
-
-const DATA = [
-  {
-    id: '1',
-    title: 'Banana',
-    subtitle: 'Amarela'
-  },
-  {
-    id: '2',
-    title: 'Laranja',
-    subtitle: 'Laranja'
-  },
-  {
-    id: '3',
-    title: 'Maçã',
-    subtitle: 'Vermelha'
-  },
-]
 
 class HomePage extends React.Component {
 
@@ -54,7 +38,7 @@ class HomePage extends React.Component {
           <Appbar.Content title="List"/>
         </Appbar.Header>
         <FlatList
-          data={DATA}
+          data={MOCK_DATA}
           renderItem={({item}) => this.renderListItem({item})}
           keyExtractor={item => item.id}
           />
@@ -72,22 +56,6 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
 });
 
 export default App;
