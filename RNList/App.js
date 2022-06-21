@@ -10,6 +10,7 @@ import React from 'react';
 import MOCK_DATA from './assets/mock_data.json';
 import {
   FlatList,
+  Image,
   StatusBar,
   StyleSheet,
   Text,
@@ -28,6 +29,8 @@ class HomePage extends React.Component {
     return <List.Item 
       title={item.title}
       description={item.subtitle}
+      left={props => <Image style={{height: 26, width: 26, alignSelf: 'center', margin: 6}} source={{uri: item.image}}/>}
+      right={props => <Text>{item.id}</Text>}
       />
   }
 
