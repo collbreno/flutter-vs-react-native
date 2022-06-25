@@ -1,0 +1,15 @@
+{
+    "app": "counter",
+    "commands": [
+        "adb shell input tap 950 1800",
+        "adb shell input tap 950 1800",
+        "adb shell input tap 950 1800",
+        "adb shell input tap 950 1800",
+        "adb shell input tap 950 1800",
+        "adb shell input tap 950 1800",
+        "adb shell input tap 950 1800",
+        "adb shell input tap 950 1800",
+        "adb shell input tap 950 1800",
+        "adb shell input tap 950 1800"
+    ]
+}
