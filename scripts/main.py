@@ -16,6 +16,12 @@ def get_framework():
         raise Exception('Framework not defined')
     return args[2]
 
+def get_n_of_executions():
+    args = sys.argv
+    if len(args) < 4:
+        raise Exception('Number of executions not defined')
+    return int(args[3])
+
 def read_json():
     file = open(get_file_name())
     data = json.load(file)
@@ -33,4 +39,6 @@ def create_tester():
 
 if __name__ == '__main__':
     tester = create_tester()
-    tester.run()
+    n = get_n_of_executions()
+    for i in range(n):
+        tester.run()

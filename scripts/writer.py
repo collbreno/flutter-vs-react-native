@@ -8,6 +8,6 @@ class Writer:
 
     def write(self, data):
         now = time.strftime("%Y%m%d-%H%M%S")
-        file_name = f'outputs\{self.app_id}{now}.json'
+        file_name = f'outputs\{self.app_id}-{now}.json'
         with open(file_name, 'w') as file:
             json.dump(data, file)
