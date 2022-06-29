@@ -3,9 +3,12 @@ from gfxinfo_parser import GFXInfoParser
 from utils import syscall
 import abc
 
+from writer import Writer
+
 
 class Tester(metaclass=abc.ABCMeta):
     app_id: str
+    writer: Writer
 
     def __init__(self, config) -> None:
         self.config = config
@@ -33,12 +36,14 @@ class Tester(metaclass=abc.ABCMeta):
         self.open_app()
         self.on_app_opened()
         self.execute_commands()
-        self.read_frames()
+        frames = self.read_frames()
+        self.writer.write(frames)
 
 class RNTester(Tester):
     def __init__(self, config) -> None:
         super().__init__(config)
         self.app_id = f'com.rn.{config["app"]}'
+        self.writer = Writer(self.app_id)
 
     def on_app_opened(self):
         print('Resetting frames...')
@@ -47,13 +52,13 @@ class RNTester(Tester):
     def read_frames(self):
         print('Reading frames...')
         res = syscall(f'adb shell dumpsys gfxinfo {self.app_id}')
-        parsed = self.parser.parse_histogram(res.stdout)
-        print(parsed)
+        return self.parser.parse_histogram(res.stdout)
 
 class FlutterTester(Tester):
     def __init__(self, config) -> None:
         super().__init__(config)
         self.app_id = f'com.flutter.{config["app"]}'
+        self.writer = Writer(self.app_id)
 
     def on_app_opened(self):
         pass
