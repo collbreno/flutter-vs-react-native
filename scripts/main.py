@@ -2,7 +2,7 @@ import json
 import sys
 
 from gfxinfo_parser import GFXInfoParser
-from tester import RNTester, FlutterTester
+from tester import RNTester, FlutterTester, Tester
 
 def get_file_name():
     args = sys.argv
@@ -27,7 +27,7 @@ def read_json():
     data = json.load(file)
     return data
 
-def create_tester():
+def create_tester() -> Tester:
     data = read_json()
     framework = get_framework()
     if framework == 'rn':
@@ -38,7 +38,9 @@ def create_tester():
         raise Exception("Framework must be rn or flutter")
 
 if __name__ == '__main__':
-    tester = create_tester()
     n = get_n_of_executions()
+    tester = create_tester()
+    tester.set_up()
     for i in range(n):
         tester.run()
+    tester.tear_down()

@@ -1,4 +1,5 @@
 from time import sleep
+from flutter_devtools import FlutterDevTools
 from gfxinfo_parser import GFXInfoParser
 from utils import syscall
 import abc
@@ -21,7 +22,7 @@ class Tester(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def read_frames(self):
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def execute_commands(self):
         print('Executing commands...')
@@ -29,13 +30,22 @@ class Tester(metaclass=abc.ABCMeta):
             syscall(cmd)
 
     @abc.abstractmethod
+    def set_up(self):
+        raise NotImplementedError()
+
+    @abc.abstractmethod
+    def tear_down(self):
+        raise NotImplementedError()
+
+    @abc.abstractmethod
     def on_app_opened(self):
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def run(self):
         self.open_app()
         self.on_app_opened()
         self.execute_commands()
+        sleep(self.config["cooldown"])
         frames = self.read_frames()
         self.writer.write(frames)
 
@@ -44,6 +54,12 @@ class RNTester(Tester):
         super().__init__(config)
         self.app_id = f'com.rn.{config["app"]}'
         self.writer = Writer(self.app_id)
+
+    def set_up(self):
+        pass
+
+    def tear_down(self):
+        pass
 
     def on_app_opened(self):
         print('Resetting frames...')
@@ -59,9 +75,17 @@ class FlutterTester(Tester):
         super().__init__(config)
         self.app_id = f'com.flutter.{config["app"]}'
         self.writer = Writer(self.app_id)
+        self.devtools = FlutterDevTools(config["flutter_devtools_url"])
+
+    def set_up(self):
+        self.devtools.open()
 
     def on_app_opened(self):
+        self.devtools.reset_frames()
         pass
 
     def read_frames(self):
-        pass #TODO: IMPLEMENT
+        self.devtools.export_data()
+
+    def tear_down(self):
+        self.devtools.close()

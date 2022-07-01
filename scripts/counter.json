@@ -11,5 +11,7 @@
         "adb shell input tap 950 1800",
         "adb shell input tap 950 1800",
         "adb shell input tap 950 1800"
-    ]
+    ],
+    "cooldown": 1,
+    "flutter_devtools_url": "http://127.0.0.1:9101?uri=http://127.0.0.1:63553/bAUX_4ovP7w=/"
 }
