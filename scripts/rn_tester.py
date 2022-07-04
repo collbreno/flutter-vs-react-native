@@ -8,9 +8,6 @@ class RNTester(Tester):
         self.app_id = f'com.rn.{config["app"]}'
         self.writer = Writer(self.app_id)
 
-    def set_up(self):
-        pass
-
     def tear_down(self):
         pass
 

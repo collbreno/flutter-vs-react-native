@@ -17,7 +17,7 @@ class Tester(metaclass=abc.ABCMeta):
     def open_app(self):
         print('Opening app...')
         syscall(f'adb shell monkey -p {self.app_id} 1')
-        sleep(1)
+        sleep(5)
 
     @abc.abstractmethod
     def read_frames(self) -> dict:
@@ -30,7 +30,7 @@ class Tester(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def set_up(self):
-        raise NotImplementedError()
+        self.open_app()
 
     @abc.abstractmethod
     def tear_down(self):
@@ -41,7 +41,6 @@ class Tester(metaclass=abc.ABCMeta):
         raise NotImplementedError()
 
     def run(self):
-        self.open_app()
         self.on_app_opened()
         self.execute_commands()
         sleep(self.config["cooldown"])

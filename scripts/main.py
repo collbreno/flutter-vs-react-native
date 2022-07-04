@@ -2,7 +2,9 @@ import json
 import sys
 
 from gfxinfo_parser import GFXInfoParser
-from tester import RNTester, FlutterTester, Tester
+from tester import Tester
+from rn_tester import RNTester
+from flutter_tester import FlutterTester
 
 def get_file_name():
     args = sys.argv

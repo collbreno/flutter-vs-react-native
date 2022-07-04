@@ -14,6 +14,7 @@ class FlutterTester(Tester):
         self.devtools_parser = DevtoolsParser()
 
     def set_up(self):
+        super().open_app()
         self.devtools_runner.open()
 
     def on_app_opened(self):
