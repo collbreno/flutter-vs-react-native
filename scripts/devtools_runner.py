@@ -9,7 +9,7 @@ btn_clear_y = 105
 btn_download_x = 850
 btn_download_y = 105
 
-class FlutterDevTools:
+class DevtoolsRunner:
     def __init__(self, url) -> None:
         self.browser = webdriver.Chrome()
         self.actions = ActionChains(self.browser)
