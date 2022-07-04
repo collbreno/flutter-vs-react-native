@@ -1,9 +1,9 @@
 class GFXInfoParser():
-    def parse_histogram(self, output: str):
-        histogram_begin = output.find('HISTOGRAM')
-        first_number = output.find('ms', histogram_begin) - 1
-        last_number = output.find('\n', histogram_begin)
-        histogram_string = output[first_number:last_number]
+    def parse_histogram(self, text: str):
+        histogram_begin = text.find('HISTOGRAM')
+        first_number = text.find('ms', histogram_begin) - 1
+        last_number = text.find('\n', histogram_begin)
+        histogram_string = text[first_number:last_number]
         numbers = histogram_string.split(' ')
         histogram_dict = {}
         for number in numbers:
