@@ -1,4 +1,4 @@
-# flutter_counter
+# counter
 
 A new Flutter project.
 
