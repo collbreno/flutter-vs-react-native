@@ -14,7 +14,7 @@ def convert_to_list(data):
 
 files = glob.glob('outputs/*.json')
 frameworks = ['rn', 'flutter']
-apps = ['counter']
+apps = ['counter', 'list']
 
 for framework in frameworks:
     for app in apps:
@@ -25,4 +25,5 @@ for framework in frameworks:
             l = sorted(convert_to_list(data))
             app_list.extend(l)
         sns.histplot(app_list, discrete=True)
-        plt.savefig(f'{framework}_{app}.png')
+        plt.savefig(f'graphs/{framework}_{app}.png', bbox_inches='tight')
+        plt.show()

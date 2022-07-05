@@ -17,7 +17,8 @@ class FlutterTester(Tester):
         super().open_app()
         self.devtools_runner.open()
 
-    def on_app_opened(self):
+    def reset(self):
+        super().reset()
         self.devtools_runner.reset_frames()
 
     def read_frames(self) -> dict:

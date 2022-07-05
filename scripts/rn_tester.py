@@ -11,7 +11,8 @@ class RNTester(Tester):
     def tear_down(self):
         pass
 
-    def on_app_opened(self):
+    def reset(self):
+        super().reset()
         print('Resetting frames...')
         syscall(f'adb shell dumpsys gfxinfo {self.app_id} reset')
 
