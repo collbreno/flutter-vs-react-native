@@ -28,7 +28,6 @@ class Tester(metaclass=abc.ABCMeta):
         for cmd in self.config['commands']:
             syscall(cmd)
 
-    @abc.abstractmethod
     def set_up(self):
         self.open_app()
 
