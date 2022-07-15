@@ -1,0 +1,21 @@
+{
+    "app": "navigations",
+    "commands": [
+        "adb shell input tap 540 1030",
+        "adb shell input tap 80 155",
+        "adb shell input tap 540 1240",
+        "adb shell input tap 80 155",
+
+        "adb shell input tap 540 1030",
+        "adb shell input tap 540 1160",
+        "adb shell input tap 540 1240",
+        "adb shell input tap 540 1160",
+
+        "adb shell input tap 540 1030",
+        "adb shell input keyevent 4",
+        "adb shell input tap 540 1240",
+        "adb shell input keyevent 4"
+    ],
+    "cooldown": 1,
+    "flutter_devtools_url": "http://127.0.0.1:9101?uri=http://127.0.0.1:58615/_VCkgRZEJJE=/"
+}
