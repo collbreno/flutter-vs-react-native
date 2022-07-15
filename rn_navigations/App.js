@@ -39,20 +39,32 @@ function HomeScreen({navigation}) {
 }
 
 
-function FirstScreen() {
+function FirstScreen({navigation}) {
   return (
     <View style={styles.center}>
       <Text>First Screen</Text>
       <Text>Just a simple screen with some text</Text>
+      <View style={styles.button}>
+        <Button
+          title="Back"
+          onPress={() => navigation.pop()}
+        />
+      </View>
     </View>
   );
 }
 
-function SecondScreen() {
+function SecondScreen({navigation}) {
   return (
     <View style={styles.center}>
       <Text>Second Screen</Text>
       <Text>Just another simple screen with some text</Text>
+      <View style={styles.button}>
+        <Button
+          title="Back"
+          onPress={() => navigation.pop()}
+        />
+      </View>
     </View>
   );
 }
@@ -60,10 +72,14 @@ function SecondScreen() {
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" screenOptions={{animation: 'slide_from_bottom'}}>
-        <Stack.Screen name="Home" component={HomeScreen}/> 
-        <Stack.Screen name="First" component={FirstScreen}/> 
-        <Stack.Screen name="Second" component={SecondScreen}/>
+      <Stack.Navigator initialRouteName="Home" screenOptions={{
+        animation: 'slide_from_bottom',
+        headerStyle: { backgroundColor: '#6200ee' },
+        headerTintColor: '#fff',
+      }}>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="First" component={FirstScreen} />
+        <Stack.Screen name="Second" component={SecondScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
