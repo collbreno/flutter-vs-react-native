@@ -6,15 +6,15 @@ import {
   Button,
 } from 'react-native';
 import {
-  Provider as PaperProvider,
-  Appbar,
-  FAB,
-  Portal,
-} from 'react-native-paper'
-import {
   NavigationContainer,
 } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Routes = {
+  HOME: 'Home',
+  FIRST: 'First',
+  SECOND: 'Second',
+}
 
 const Stack = createNativeStackNavigator();
 
@@ -22,33 +22,50 @@ function HomeScreen({navigation}) {
   return (
     <View style={styles.center}>
       <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
+      <View style={styles.button}>
+        <Button
+          title="Navigate"
+          onPress={() => navigation.navigate(Routes.FIRST)}
+        />
+      </View>
+      <View style={styles.button}>
+        <Button
+          title="Navigate again"
+          onPress={() => navigation.navigate(Routes.SECOND)}
+        />
+      </View>
     </View>
   );
 }
 
 
-function DetailsScreen() {
+function FirstScreen() {
   return (
     <View style={styles.center}>
-      <Text>Details Screen</Text>
+      <Text>First Screen</Text>
+      <Text>Just a simple screen with some text</Text>
+    </View>
+  );
+}
+
+function SecondScreen() {
+  return (
+    <View style={styles.center}>
+      <Text>Second Screen</Text>
+      <Text>Just another simple screen with some text</Text>
     </View>
   );
 }
 
 const App = () => {
   return (
-    <PaperProvider>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen}/> 
-          <Stack.Screen name="Details" component={DetailsScreen}/> 
-        </Stack.Navigator>
-      </NavigationContainer>
-    </PaperProvider>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home" screenOptions={{animation: 'slide_from_bottom'}}>
+        <Stack.Screen name="Home" component={HomeScreen}/> 
+        <Stack.Screen name="First" component={FirstScreen}/> 
+        <Stack.Screen name="Second" component={SecondScreen}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
@@ -57,6 +74,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
+  },
+  button: {
+    marginTop: 20,
   },
   fab: {
     position: 'absolute',
