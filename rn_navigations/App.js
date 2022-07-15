@@ -3,6 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
+  Button,
 } from 'react-native';
 import {
   Provider as PaperProvider,
@@ -11,36 +12,41 @@ import {
   Portal,
 } from 'react-native-paper'
 import {
-  NavigationContainer
+  NavigationContainer,
 } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-class HomePage extends React.Component {
+const Stack = createNativeStackNavigator();
 
-  render() {
-    return (
-      <View>
-        <Portal>
-          <Appbar.Header>
-            <Appbar.Content title="Counter" />
-          </Appbar.Header>
-          <View>
-          </View>
-          <FAB
-            style={styles.fab}
-            icon="plus"
-            color="white"
-            onPress={() => { }} />
-        </Portal>
-      </View>
-    )
-  }
+function HomeScreen({navigation}) {
+  return (
+    <View style={styles.center}>
+      <Text>Home Screen</Text>
+      <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('Details')}
+      />
+    </View>
+  );
+}
+
+
+function DetailsScreen() {
+  return (
+    <View style={styles.center}>
+      <Text>Details Screen</Text>
+    </View>
+  );
 }
 
 const App = () => {
   return (
     <PaperProvider>
       <NavigationContainer>
-        <HomePage />
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={HomeScreen}/> 
+          <Stack.Screen name="Details" component={DetailsScreen}/> 
+        </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
   );
@@ -50,7 +56,7 @@ const styles = StyleSheet.create({
   center: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100%',
+    flex: 1,
   },
   fab: {
     position: 'absolute',
