@@ -73,7 +73,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home" screenOptions={{
-        animation: 'slide_from_bottom',
+        animationDuration: 300,
         headerStyle: { backgroundColor: '#6200ee' },
         headerTintColor: '#fff',
       }}>
