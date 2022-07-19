@@ -38,7 +38,23 @@ class Counter extends React.Component {
   }
 }
 
+class Holder extends React.Component {
+  render() {
+    return (
+      <View style={styles.column_evenly_spaced}>
+        <Counter milliseconds={this.props.milliseconds} />
+        <Counter milliseconds={this.props.milliseconds} />
+        <Counter milliseconds={this.props.milliseconds} />
+      </View>
+    )
+  }
+}
+
 class HomePage extends React.Component {
+  constructor(props) {
+    super(props)
+    this.milliseconds = 16
+  }
 
   render() {
     return (
@@ -48,7 +64,10 @@ class HomePage extends React.Component {
             <Appbar.Content title="Counter" />
           </Appbar.Header>
           <View style={styles.center}>
-            <Counter milliseconds={16} />
+            <View style={styles.row_evenly_spaced}>
+              <Holder milliseconds={this.milliseconds} />
+              <Holder milliseconds={this.milliseconds * 2} />
+            </View>
           </View>
         </Portal>
       </View>
@@ -69,6 +88,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
+  },
+  column_evenly_spaced: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+  row_evenly_spaced: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyItems: 'space-between',
+    justifyContent: 'space-evenly',
   },
   fab: {
     position: 'absolute',
