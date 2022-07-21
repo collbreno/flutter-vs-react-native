@@ -9,7 +9,7 @@ class DevtoolsParser():
         return self.order_dict(histogram_dict)
 
     def parse_frame_info(self, flutter_frame):
-        frame_duration = flutter_frame["build"] + flutter_frame["raster"]
+        frame_duration = max(flutter_frame["build"], flutter_frame["raster"])
         frame_duration /= 1000.0
         frame_duration = round(frame_duration)
         return frame_duration
