@@ -8,7 +8,7 @@ from histogram_analyzer import HistogramAnalyzer
 
 files = glob.glob('outputs/*.json')
 frameworks = ['rn', 'flutter']
-apps = ['counter', 'list']
+apps = ['counter', 'list', 'navigations', 'stopwatch', 'multistopwatch']
 
 csv_writer = CSVWriter()
 for framework in frameworks:

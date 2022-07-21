@@ -1,3 +1,4 @@
+from gfxinfo_parser import GFXInfoParser
 from tester import Tester
 from writer import Writer
 from utils import syscall
@@ -7,6 +8,7 @@ class RNTester(Tester):
         super().__init__(config)
         self.app_id = f'com.rn.{config["app"]}'
         self.writer = Writer(self.app_id)
+        self.parser = GFXInfoParser()
 
     def tear_down(self):
         pass

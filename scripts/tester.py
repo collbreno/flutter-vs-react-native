@@ -1,6 +1,4 @@
 from time import sleep
-from devtools_runner import DevtoolsRunner
-from gfxinfo_parser import GFXInfoParser
 from utils import syscall
 import abc
 
@@ -12,7 +10,6 @@ class Tester(metaclass=abc.ABCMeta):
 
     def __init__(self, config) -> None:
         self.config = config
-        self.parser = GFXInfoParser()
 
     def open_app(self):
         print('Opening app...')
@@ -30,10 +27,11 @@ class Tester(metaclass=abc.ABCMeta):
 
     def set_up(self):
         self.open_app()
-        print('Setting up...')
-        for cmd in self.config['setup']:
-            print(cmd)
-            syscall(cmd)
+        if 'setup' in self.config:
+            print('Setting up...')
+            for cmd in self.config['setup']:
+                print(cmd)
+                syscall(cmd)
 
     @abc.abstractmethod
     def tear_down(self):

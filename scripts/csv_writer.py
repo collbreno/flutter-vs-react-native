@@ -7,7 +7,7 @@ class CSVWriter:
         self.lines = []
         self.header = []
         self.header.append('framework')
-        self.header.append('app')
+        self.header.append('application')
         self.header.append('total_frames')
         self.header.append('janky_frames')
         self.header.append('janky_percentage')
