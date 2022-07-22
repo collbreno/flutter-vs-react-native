@@ -1,7 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -51,7 +50,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("List"),
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Colors.black,
+          statusBarIconBrightness: Brightness.dark,
+        ),
+        title: Text("List", style: TextStyle(color: Colors.lightBlue.shade100)),
       ),
       body: Center(
         child: ListView.builder(
@@ -60,9 +63,15 @@ class _MyHomePageState extends State<MyHomePage> {
             final item = items[index];
             final image = Uri.parse(item["image"]).data!.contentAsBytes();
             return ListTile(
+              tileColor: Colors.lightBlue.shade100,
               leading: CircleAvatar(
-                backgroundImage: MemoryImage(image),
                 backgroundColor: Colors.transparent,
+                child: Image.memory(
+                  image,
+                  width: 26,
+                  height: 26,
+                  fit: BoxFit.fill,
+                ),
               ),
               trailing: Text(item["id"].toString()),
               title: Text(item["title"]),
