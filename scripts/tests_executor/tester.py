@@ -2,11 +2,11 @@ from time import sleep
 from utils import syscall
 import abc
 
-from writer import Writer
+from histogram_writer import HistogramWriter
 
 class Tester(metaclass=abc.ABCMeta):
     app_id: str
-    writer: Writer
+    histogram_writer: HistogramWriter
 
     def __init__(self, config) -> None:
         self.config = config
@@ -47,4 +47,4 @@ class Tester(metaclass=abc.ABCMeta):
         self.execute_commands()
         sleep(self.config["cooldown"])
         frames = self.read_frames()
-        self.writer.write(frames)
+        self.histogram_writer.write(frames)

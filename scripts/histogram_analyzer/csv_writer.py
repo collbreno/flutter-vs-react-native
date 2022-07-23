@@ -1,7 +1,6 @@
 from io import TextIOWrapper
 from histogram_analyzer import HistogramAnalyzer
 
-
 class CSVWriter:
     def __init__(self) -> None:
         self.lines = []
@@ -26,7 +25,7 @@ class CSVWriter:
         file.write('\n')
 
     def write(self):
-        with open('outputs/test.csv', 'w') as csv:
+        with open('outputs/results.csv', 'w') as csv:
             self.write_line(csv, self.header)
             for line in self.lines:
                 self.write_line(csv, line)

@@ -1,13 +1,13 @@
 from gfxinfo_parser import GFXInfoParser
 from tester import Tester
-from writer import Writer
+from histogram_writer import HistogramWriter
 from utils import syscall
 
 class RNTester(Tester):
     def __init__(self, config) -> None:
         super().__init__(config)
         self.app_id = f'com.rn.{config["app"]}'
-        self.writer = Writer(self.app_id)
+        self.histogram_writer = HistogramWriter(self.app_id)
         self.parser = GFXInfoParser()
 
     def tear_down(self):

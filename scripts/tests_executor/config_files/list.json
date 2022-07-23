@@ -12,10 +12,13 @@
     ],
     "commands": [
         "adb shell input swipe 100 1000 100 -4000 300",
-        "adb shell input swipe 100 1000 100 -4000 300",
-        "adb shell input swipe 100 1000 100 -4000 300"
+        "adb shell input swipe 100 1000 100 -2000 300",
+        "adb shell input swipe 100 1000 100 -2000 300",
+        "adb shell input swipe 100 1000 100 -2000 300",
+        "adb shell input swipe 100 1000 100 -2000 300",
+        "adb shell input swipe 100 1000 100 -2000 300"
     ],
     "reset": "adb shell input swipe 100 1000 100 100000 300",
     "cooldown": 3,
-    "flutter_devtools_url": "http://127.0.0.1:9100?uri=http://127.0.0.1:60500/0a6uTYW2zcs=/"
+    "flutter_devtools_url": "http://127.0.0.1:9100?uri=http://127.0.0.1:51348/tUKiMAojJ6s=/"
 }

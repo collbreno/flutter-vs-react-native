@@ -25,7 +25,7 @@ def get_n_of_executions():
     return int(args[3])
 
 def read_json():
-    file = open(get_file_name())
+    file = open(f'config_files/{get_file_name()}')
     data = json.load(file)
     return data
 
