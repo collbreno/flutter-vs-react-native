@@ -6,11 +6,11 @@ import numpy as np
 
 class FrameAnalyzer:
     def __init__(self, image_path) -> None:
-        target_color = [247, 249, 246]
+        target_color = [250, 250, 250]
         diff = 5
         # Be aware that opencv loads image in BGR format,
         # that's why the color values have been adjusted here:
-        self.boundaries = ([target_color[2], target_color[1]-diff, target_color[0]-diff],
+        self.boundaries = ([target_color[2]-diff, target_color[1]-diff, target_color[0]-diff],
            [target_color[2]+diff, target_color[1]+diff, target_color[0]+diff])
         self.scale_percent = 0.3
         self.image = self.__get_resized_img(image_path)
@@ -34,7 +34,7 @@ class FrameAnalyzer:
         # be rendered in black, for all three channels:
         return cv2.inRange(self.image, lower, upper)
 
-    def get_white_percentage(self):
+    def get_white_percentage(self) -> float:
         # You can use the mask to count the number of white pixels.
         # Remember that the white pixels in the mask are those that
         # fall in your defined range, that is, every white pixel corresponds
@@ -44,6 +44,10 @@ class FrameAnalyzer:
         color_percent = (ratio_white * 100)
         
         return color_percent
+
+    def save_masked(self, file_name):
+        output = cv2.bitwise_and(self.image, self.image, mask=self.mask)
+        cv2.imwrite(file_name, np.hstack([self.image, output]))
 
     def show_masked(self):
         output = cv2.bitwise_and(self.image, self.image, mask=self.mask)
