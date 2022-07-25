@@ -4,6 +4,7 @@ import sys
 from gfxinfo_parser import GFXInfoParser
 from tester import Tester
 from rn_tester import RNTester
+from rn_rec_tester import RNRecTester
 from flutter_tester import FlutterTester
 
 def get_file_name():
@@ -34,10 +35,12 @@ def create_tester() -> Tester:
     framework = get_framework()
     if framework == 'rn':
         return RNTester(data)
+    elif framework == 'rn_rec':
+        return RNRecTester(data)
     elif framework == 'flutter':
         return FlutterTester(data)
     else:
-        raise Exception("Framework must be rn or flutter")
+        raise Exception("Framework must be rn, rn_rec or flutter")
 
 if __name__ == '__main__':
     n = get_n_of_executions()
