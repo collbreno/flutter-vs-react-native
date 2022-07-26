@@ -22,18 +22,18 @@ def delete_first_duplicated_images(files: list):
     delete_while_duplicated(first_img, files)
 
 if __name__ == '__main__':
-    videos = glob('../tests_executor/outputs/*/*.mp4')
+    videos = glob('../tests_executor/frames/*/*.mp4')
 
     # extract frames from every video
     for video in videos:
         video_name = video.split('\\')[-1]
         app_id = video_name.split('-')[0]
-        output_path = f"outputs/{app_id}/{video_name.removesuffix('.mp4')}"
+        output_path = f"frames/{app_id}/{video_name.removesuffix('.mp4')}"
         os.makedirs(output_path, exist_ok=True)
         subprocess.run(f'ffmpeg -i {video} {output_path}/frame%03d.png', shell=True)
 
     # delete duplicated frames from every video
-    folders = glob('./outputs/*/*')
+    folders = glob('./frames/*/*')
     for folder in folders:
         files = glob(f'{folder}/*.png')
         delete_first_duplicated_images(files)

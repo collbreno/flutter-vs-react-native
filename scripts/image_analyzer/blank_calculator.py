@@ -13,6 +13,13 @@ class BlankInfo:
     white_percentage: float
     white_relative_percentage: float
 
+    def to_obj(self):
+        return {
+            'estimated_missing_items': self.estimated_missing_items,
+            'white_percentage': self.white_percentage,
+            'white_relative_percentage': self.white_relative_percentage
+        }
+
 class BlankCalulator:
     def __init__(self, framework) -> None:
         data = self.__read_specs_file()
@@ -32,8 +39,7 @@ class BlankCalulator:
             return ceil(treated_percentage/self.item_percentage)
         
     def __calculate_white_relative_percentage(self, white_percentage):
-        treated_percentage = white_percentage - self.diff
-        return np.round((treated_percentage/self.list_percentage)*100, 2)
+        return np.round((white_percentage/self.list_percentage)*100, 2)
 
     def get_stats(self, image_path) -> BlankInfo:
         analyzer = FrameAnalyzer(image_path)
