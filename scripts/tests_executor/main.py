@@ -1,10 +1,7 @@
 import json
 import sys
-
-from gfxinfo_parser import GFXInfoParser
 from tester import Tester
 from rn_tester import RNTester
-from rn_rec_tester import RNRecTester
 from flutter_tester import FlutterTester
 
 def get_file_name():
@@ -31,16 +28,15 @@ def read_json():
     return data
 
 def create_tester() -> Tester:
+    record_screen = '--rec' in sys.argv
     data = read_json()
     framework = get_framework()
     if framework == 'rn':
-        return RNTester(data)
-    elif framework == 'rn_rec':
-        return RNRecTester(data)
+        return RNTester(data, record_screen)
     elif framework == 'flutter':
-        return FlutterTester(data)
+        return FlutterTester(data, record_screen)
     else:
-        raise Exception("Framework must be rn, rn_rec or flutter")
+        raise Exception("Framework must be rn or flutter")
 
 if __name__ == '__main__':
     n = get_n_of_executions()

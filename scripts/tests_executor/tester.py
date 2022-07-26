@@ -1,4 +1,5 @@
 from time import sleep
+from screen_recorder import ScreenRecorder
 from utils import syscall
 import abc
 
@@ -6,10 +7,16 @@ from histogram_writer import HistogramWriter
 
 class Tester(metaclass=abc.ABCMeta):
     app_id: str
-    histogram_writer: HistogramWriter
 
-    def __init__(self, config) -> None:
+    def __init__(self, config, record_screen=False) -> None:
         self.config = config
+        self.histogram_writer = HistogramWriter()
+        self.record_screen = record_screen
+        self.recorder = ScreenRecorder()
+
+    def get_output_app_id(self):
+        return self.app_id+'_rec' if self.record_screen else self.app_id
+
 
     def open_app(self):
         print('Opening app...')
@@ -44,7 +51,11 @@ class Tester(metaclass=abc.ABCMeta):
 
     def run(self):
         self.reset()
+        if self.record_screen:
+            self.recorder.start()
         self.execute_commands()
         sleep(self.config["cooldown"])
+        if self.record_screen:
+            self.recorder.save_video(self.get_output_app_id())
         frames = self.read_frames()
-        self.histogram_writer.write(frames)
+        self.histogram_writer.write(frames, self.get_output_app_id())

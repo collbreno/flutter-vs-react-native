@@ -2,14 +2,12 @@ import json
 from devtools_parser import DevtoolsParser
 from tester import Tester
 from utils import get_last_download
-from histogram_writer import HistogramWriter
 from devtools_runner import DevtoolsRunner
 
 class FlutterTester(Tester):
-    def __init__(self, config) -> None:
-        super().__init__(config)
+    def __init__(self, config, record_screen=False) -> None:
+        super().__init__(config, record_screen)
         self.app_id = f'com.flutter.{config["app"]}'
-        self.histogram_writer = HistogramWriter(self.app_id)
         self.devtools_runner = DevtoolsRunner(config["flutter_devtools_url"])
         self.devtools_parser = DevtoolsParser()
 
