@@ -10,8 +10,6 @@ def delete_while_duplicated(first_img, img_list):
     for img_path in img_list:
         img2 = cv2.imread(img_path)
         r = np.count_nonzero(cv2.absdiff(img1, img2))
-        print(first_img.split('\\')[-1], img_path.split('\\')[-1])
-        print(r)
         if r < 100000:
             os.remove(img_path)
         else:
@@ -22,7 +20,7 @@ def delete_first_duplicated_images(files: list):
     delete_while_duplicated(first_img, files)
 
 if __name__ == '__main__':
-    videos = glob('../tests_executor/frames/*/*.mp4')
+    videos = glob('../tests_executor/outputs/*/*.mp4')
 
     # extract frames from every video
     for video in videos:

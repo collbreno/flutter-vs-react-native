@@ -7,6 +7,7 @@ from utils import syscall
 class ScreenRecorder():
     def start(self):
         subprocess.Popen('adb shell screenrecord /sdcard/video.mp4')
+        sleep(1)
 
     def save_video(self, app_id):
         syscall('adb shell pkill -2 screenrecord')

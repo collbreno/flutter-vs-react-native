@@ -4,7 +4,6 @@ import os
 from tqdm import tqdm
 from blank_calculator import BlankCalulator
 
-
 folders = glob('./frames/*/*')
 for folder in folders:
     stats_list = []

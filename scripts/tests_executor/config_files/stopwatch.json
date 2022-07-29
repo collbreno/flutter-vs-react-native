@@ -4,5 +4,5 @@
         "timeout /t 5"
     ],
     "cooldown": 0,
-    "flutter_devtools_url": "http://127.0.0.1:9103?uri=http://127.0.0.1:63524/NNreBVfLZfs=/"
+    "flutter_devtools_url": ""
 }

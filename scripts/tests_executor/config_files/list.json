@@ -20,5 +20,5 @@
     ],
     "reset": "adb shell input swipe 100 1000 100 100000 300",
     "cooldown": 2,
-    "flutter_devtools_url": "http://127.0.0.1:9100?uri=http://127.0.0.1:51348/tUKiMAojJ6s=/"
+    "flutter_devtools_url": ""
 }
