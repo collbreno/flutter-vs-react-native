@@ -8,7 +8,7 @@ def get_file_name():
     args = sys.argv
     if len(args) < 2:
         raise Exception('Config file name not defined')
-    return args[1]
+    return args[1]+'.json'
 
 def get_framework():
     args = sys.argv
