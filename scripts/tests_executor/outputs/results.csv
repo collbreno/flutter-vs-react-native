@@ -1,0 +1,11 @@
+framework,application,total_frames,janky_frames,janky_percentage
+rn,counter,1410,1,0.07%
+rn,list,4411,833,18.88%
+rn,navigations,1918,91,4.74%
+rn,stopwatch,2879,0,0.00%
+rn,multistopwatch,2784,0,0.00%
+flutter,counter,1297,4,0.31%
+flutter,list,3643,87,2.39%
+flutter,navigations,2286,15,0.66%
+flutter,stopwatch,3587,18,0.50%
+flutter,multistopwatch,3564,30,0.84%

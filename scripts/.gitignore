@@ -1,5 +1,4 @@
 **/__pycache__/
-outputs/
-graphs/
-frames/
-
+*.mp4
+frames
+**/outputs/**/*.json
