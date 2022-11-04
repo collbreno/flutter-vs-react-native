@@ -8,6 +8,20 @@ import matplotlib.ticker as mtick
 
 GRAPHS_FOLDER = 'outputs/graphs'
 
+def format_graph_title(app: str) -> str:
+    if app == 'stopwatch':
+        return 'Aplicativo 1 - Stopwatch'
+    elif app == 'multistopwatch':
+        return 'Aplicativo 2 - Multi Stopwatch'
+    elif app == 'counter':
+        return 'Aplicativo 3 - Counter'
+    elif app == 'navigations':
+        return 'Aplicativo 4 - Navigations'
+    elif app == 'list':
+        return 'Aplicativo 5 - List'
+    else:
+        raise Exception(f'Graph title not defined for application {app}')
+
 def convert_float_to_string_percentage(p: float) -> str:
     p = 0 if math.isnan(p) else np.round(p*100, 2)
     return f'{p}%'
@@ -29,7 +43,7 @@ def plot_janky_percentage(dataframe: pd.DataFrame, app: str):
     ax.set(
         xlabel = 'Execução', 
         ylabel = 'Porcentagem de janky frames',
-        title = app
+        title = format_graph_title(app)
     )
     ax.yaxis.set_major_formatter(mtick.PercentFormatter())
     plt.savefig(f'{GRAPHS_FOLDER}/{app}.png', bbox_inches='tight')
@@ -40,7 +54,12 @@ if __name__ == '__main__':
     os.makedirs(GRAPHS_FOLDER, exist_ok=True)
     df = pd.read_csv('dataframe.csv')
     df = df[df.app != 'list_rec']
+    df['framework'] = df['framework'].replace(['flutter'], 'Flutter').replace(['rn'], 'React Native')
 
     for app in df.app.unique():
-        sns.set(rc = {'figure.figsize':(15,8)})
+        sns.set(
+            rc = {'figure.figsize':(12,5)},
+            font_scale = 1.2,
+        )
+        
         plot_janky_percentage(df, app)
